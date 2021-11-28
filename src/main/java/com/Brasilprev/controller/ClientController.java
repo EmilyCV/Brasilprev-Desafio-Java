@@ -1,13 +1,6 @@
 package com.Brasilprev.controller;
 
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.Brasilprev.entity.Client;
 
@@ -42,15 +35,15 @@ public class ClientController {
 
 	@GetMapping("/{cpf}")
 	@ResponseStatus(HttpStatus.OK)
-	public String clientInfo(@PathVariable String cpf) {
+	public Client clientInfo(@PathVariable String cpf) {
 		return clientService.getClient(cpf);
 
 	}
 
-	@GetMapping("/address")
+	@PutMapping("/{cpf}")
 	@ResponseStatus(HttpStatus.OK)
-	public String updateClient(@RequestBody Client client) {
-		clientService.updateClient(client);
+	public Client updateClient(@PathVariable String cpf, @RequestBody Client client) {
+		clientService.updateClient(client, cpf);
 		return clientInfo(client.getCpf());
 	}
 

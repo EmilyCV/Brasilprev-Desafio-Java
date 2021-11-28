@@ -21,55 +21,42 @@ import lombok.AllArgsConstructor;
 @Configuration
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
-	private AuthenticationService authenticationService;
-	private TokenService tokenService;
-	private ClientRepository clientRepository;
+    private AuthenticationService authenticationService;
+    private TokenService tokenService;
+    private ClientRepository clientRepository;
 
-	@Override
-	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(authenticationService).passwordEncoder(AuthenticationService.getPasswordEncoder());
-	}
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(authenticationService).passwordEncoder(AuthenticationService.getPasswordEncoder());
+    }
 
-	@Override
-	@Bean
-	protected AuthenticationManager authenticationManager() throws Exception {
-		return super.authenticationManager();
-	}
+    @Override
+    @Bean
+    protected AuthenticationManager authenticationManager() throws Exception {
+        return super.authenticationManager();
+    }
 
-	@Override
-	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeHttpRequests().antMatchers("api/login")
-					.permitAll().antMatchers("/api/client")
-					.permitAll()
-					.antMatchers(HttpMethod.DELETE,"/api/client")
-					.authenticated()
-					.and()
-					.csrf()
-					.disable()
-					.sessionManagement()
-					.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-					.and()
-					.addFilterBefore(new AuthorizationFilter(tokenService, clientRepository),
-					UsernamePasswordAuthenticationFilter.class);
-////		http.authorizeHttpRequests().anyRequest().permitAll();
-////		 http.authorizeRequests()
-////         .antMatchers("/api/login")
-////             .permitAll()
-////         .antMatchers(HttpMethod.POST,"/api/client")
-////             .permitAll()
-////         .anyRequest()
-////             .authenticated()
-////         .and()
-////         .csrf()
-////         .disable()
-////         .sessionManagement()
-////         .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-////         .and()
-////         .addFilterBefore(new AuthorizationFilter(tokenService, clientRepository), UsernamePasswordAuthenticationFilter.class);
-//		http.authorizeHttpRequests().anyRequest().permitAll().and().csrf().disable();
-//
-//		 http.authorizeRequests().antMatchers("/").permitAll();
-	}
-	
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.authorizeHttpRequests()
+                .antMatchers("api/login")
+                    .permitAll()
+                .antMatchers("/api/client")
+                    .permitAll()
+                .antMatchers(HttpMethod.DELETE, "/api/client")
+                .authenticated()
+                .anyRequest()
+                .authenticated()
+                .and()
+                .csrf()
+                .disable()
+                .sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
+                .addFilterBefore(new AuthorizationFilter(tokenService, clientRepository),
+                        UsernamePasswordAuthenticationFilter.class);
+
+    }
+
 
 }

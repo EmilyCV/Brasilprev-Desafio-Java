@@ -24,10 +24,10 @@ public class ClientService {
 		return clientRepository.findAll();
 	}
 	
-	public String getClient(String cpf) {
+	public Client getClient(String cpf) {
 		Client clientExist = clientRepository.findByCpf(cpf);
 		if(clientExist != null) {
-			return clientExist.toString();
+			return clientExist;
 		}
 		
 		throw new ClientNotFoundException();
@@ -45,8 +45,8 @@ public class ClientService {
 		return "Cadastrado";
 	}
 	
-	public String updateClient(Client client) {
-		Client clientExist = clientRepository.findByCpf(client.getCpf());
+	public String updateClient(Client client, String cpf) {
+		Client clientExist = clientRepository.findByCpf(cpf);
 		
 		if(clientExist==null) {
 			throw new ClientNotFoundException("Client not found");
