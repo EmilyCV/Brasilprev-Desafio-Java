@@ -1,13 +1,13 @@
 _type: export
 __export_format: 4
-__export_date: 2021-11-29T02:05:49.491Z
+__export_date: 2021-11-29T05:16:42.578Z
 __export_source: insomnia.desktop.app:v2021.6.0
 resources:
   - _id: req_6977bcf5d1d748a98513810df8f41194
     parentId: wrk_1998ba0e3c8d473bb7efd6db9a24e1a2
-    modified: 1638151424527
+    modified: 1638162967998
     created: 1638117146051
-    url: http://localhost:9092/api/client/48152640824
+    url: http://localhost:9092/api/client/98645898524
     name: updateClient
     description: ""
     method: PUT
@@ -54,9 +54,9 @@ resources:
     _type: workspace
   - _id: req_cfb0b74873704effb7b72072ae5ba0f4
     parentId: wrk_1998ba0e3c8d473bb7efd6db9a24e1a2
-    modified: 1638150270205
+    modified: 1638162954618
     created: 1638117136594
-    url: http://localhost:9092/api/client/48152640824
+    url: http://localhost:9092/api/client/98645898524
     name: deleteClient
     description: ""
     method: DELETE
@@ -98,9 +98,9 @@ resources:
     _type: request
   - _id: req_bf901b55fccd471fa63d519af7029690
     parentId: wrk_1998ba0e3c8d473bb7efd6db9a24e1a2
-    modified: 1638151088322
+    modified: 1638162950854
     created: 1638117005812
-    url: http://localhost:9092/api/client/48152640824
+    url: http://localhost:9092/api/client/98645898524
     name: getClient
     description: ""
     method: GET
@@ -119,7 +119,7 @@ resources:
     _type: request
   - _id: req_abfe0296ddd04731bda7daf435055ded
     parentId: wrk_1998ba0e3c8d473bb7efd6db9a24e1a2
-    modified: 1638151413242
+    modified: 1638162962286
     created: 1638116990864
     url: http://localhost:9092/api/client
     name: createClient
@@ -129,7 +129,7 @@ resources:
       mimeType: application/json
       text: |-
         {
-            "cpf": "48152640824",
+            "cpf": "98645898524",
             "name": "Emily",
             "email": "emily@gmail.com",
             "password": "123",
@@ -158,7 +158,7 @@ resources:
     _type: request
   - _id: req_e858d6b63c974a39a5810d7668fc49a1
     parentId: wrk_1998ba0e3c8d473bb7efd6db9a24e1a2
-    modified: 1638151416069
+    modified: 1638162961465
     created: 1638116910423
     url: http://localhost:9092/api/login
     name: singnInClient
