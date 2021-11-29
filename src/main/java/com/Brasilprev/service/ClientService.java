@@ -3,7 +3,7 @@ package com.Brasilprev.service;
 import org.springframework.stereotype.Service;
 
 import com.Brasilprev.entity.Client;
-import com.Brasilprev.exception.ClientAlreedyRegisteredException;
+import com.Brasilprev.exception.ClientAlreadyRegisteredException;
 import com.Brasilprev.exception.ClientNotFoundException;
 import com.Brasilprev.repository.ClientRepository;
 
@@ -33,19 +33,19 @@ public class ClientService {
 		throw new ClientNotFoundException();
 	}
 	
-	public String addClient(Client client) {
+	public Client addClient(Client client) {
 		Optional<Client> clientExist = clientRepository.findById(client.getCpf());
 		
 		if(!clientExist.isEmpty()) {
-			throw new ClientAlreedyRegisteredException("Client alreedy registered!");
+			throw new ClientAlreadyRegisteredException("Client already registered!");
 		}
 		
 		client.setPassword(AuthenticationService.getPasswordEncoder().encode(client.getPassword()));
-		clientRepository.save(client);
-		return "Cadastrado";
+
+		return clientRepository.save(client);
 	}
 	
-	public String updateClient(Client client, String cpf) {
+	public Client updateClient(Client client, String cpf) {
 		Client clientExist = clientRepository.findByCpf(cpf);
 		
 		if(clientExist==null) {
@@ -53,8 +53,8 @@ public class ClientService {
 			
 		}
 		client.setPassword(AuthenticationService.getPasswordEncoder().encode(client.getPassword()));
-		clientRepository.save(client);
-		return "Atualizado";
+
+		return clientRepository.save(client);
 	}
 	
 	public String deleteClient(String cpf) {

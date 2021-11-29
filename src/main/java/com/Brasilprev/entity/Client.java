@@ -46,16 +46,10 @@ public class Client implements UserDetails {
 	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_address")
 	private Address address;
-	
-//	@Transient
-//	private String token;
-	
-	@ManyToMany(fetch = FetchType.EAGER)
-    private Collection<Role> roles;
 
 	@Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return this.roles;
+        return null;
     }
 
 	@Override

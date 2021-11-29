@@ -39,12 +39,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests()
-                .antMatchers("api/login")
+                .antMatchers("/api/login")
                     .permitAll()
-                .antMatchers("/api/client")
-                    .permitAll()
-                .antMatchers(HttpMethod.DELETE, "/api/client")
+                .antMatchers(HttpMethod.DELETE, "/api/client/{cpf}")
                 .authenticated()
+                .antMatchers("/api/client/**")
+                    .permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()

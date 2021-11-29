@@ -8,9 +8,15 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity(name = "T_ADDRESS")
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Data
 public class Address {
 	@Id
@@ -32,8 +38,5 @@ public class Address {
 
 	@Column(name = "address_complement", length = 60)
 	private String complement;
-	
-//	@ManyToOne
-//    @JoinColumn
-//	private Client client;
+
 }
