@@ -29,6 +29,7 @@ public class ClientController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
 //    @ApiOperation(value = "Client registration")
+    //API call for client creation
     public String create(@RequestBody @Valid Client client) {
         clientService.addClient(client);
         return "Criado";
@@ -36,12 +37,14 @@ public class ClientController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
+    //Listing of all registered clients at the database
     public List<Client> listClient() {
         return clientService.getAllClients();
     }
 
     @GetMapping("/{cpf}")
     @ResponseStatus(HttpStatus.OK)
+    //Reading information from a client with a specific cpf (cpf = 98645898524)
     public Client clientInfo(@PathVariable String cpf) {
         return clientService.getClient(cpf);
 
@@ -49,12 +52,14 @@ public class ClientController {
 
     @PutMapping("/{cpf}")
     @ResponseStatus(HttpStatus.OK)
+    //Updating information from a client with a specific cpf (cpf = 98645898524)
     public Client updateClient(@PathVariable String cpf, @RequestBody @Valid Client client) {
         clientService.updateClient(client, cpf);
         return clientInfo(client.getCpf());
     }
 
     @DeleteMapping("/{cpf}")
+    //Deleting a client via their cpf (cpf = 98645898524)
     public ResponseEntity<Client> deleteClient(@PathVariable String cpf) {
         clientService.deleteClient(cpf);
         return ResponseEntity.ok().build();

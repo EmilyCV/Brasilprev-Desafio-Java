@@ -8,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,20 +23,21 @@ import lombok.AllArgsConstructor;
 @RequestMapping("/api/login")
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class LoginController {
-	private AuthenticationManager authenticationManager;
-	
-	private TokenService tokenService;
-	
-	@PostMapping
+    private AuthenticationManager authenticationManager;
+
+    private TokenService tokenService;
+
+    @PostMapping
     @ResponseStatus(HttpStatus.OK)
-	public ResponseEntity<String> auth(@RequestBody @Valid Login login) {
-		Authentication auth = login.getAuthentication();
-		try {
-			Authentication authentication = authenticationManager.authenticate(auth);
-			String token = tokenService.createToken(authentication);
-			return ResponseEntity.ok(token);
-		} catch (AuthenticationException e) {
-			return ResponseEntity.badRequest().build();
-		}
-	}
+    //Client login via email and password (email = emily@gmail.com, password = 123)
+    public ResponseEntity<String> auth(@RequestBody @Valid Login login) {
+        Authentication auth = login.getAuthentication();
+        try {
+            Authentication authentication = authenticationManager.authenticate(auth);
+            String token = tokenService.createToken(authentication);
+            return ResponseEntity.ok(token);
+        } catch (AuthenticationException e) {
+            return ResponseEntity.badRequest().build();
+        }
+    }
 }

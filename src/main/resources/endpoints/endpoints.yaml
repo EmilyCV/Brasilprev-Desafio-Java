@@ -15,7 +15,7 @@ resources:
       mimeType: application/json
       text: |-
         {
-            "cpf": "48152640824",
+            "cpf": "98645898524",
             "name": "Emily",
             "email": "emilyMil@gmail.com",
             "password": "123",

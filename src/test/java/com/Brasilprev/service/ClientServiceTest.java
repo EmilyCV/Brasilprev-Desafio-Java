@@ -34,6 +34,7 @@ public class ClientServiceTest {
     private ClientRepository clientRepository;
 
     @Test
+    //Positive test for client creation
     public void whenValidClientGivenThenCreateClient() throws ClientAlreadyRegisteredException {
         Client client = ClientBuilder.builder().build().client();
 
@@ -46,6 +47,7 @@ public class ClientServiceTest {
     }
 
     @Test
+    //Negative test for client creation (client already registered)
     public void whenClientAlreadyExistsGivenThenCreateClient() {
         Client client = ClientBuilder.builder().build().client();
         when(clientRepository.findById(client.getCpf())).thenReturn(Optional.of(client));
@@ -54,6 +56,7 @@ public class ClientServiceTest {
     }
 
     @Test
+    //Positive test for client listing
     public void whenListClientIsCalledThenReturnAListOfClients() {
         Client client = ClientBuilder.builder().build().client();
 
@@ -65,6 +68,7 @@ public class ClientServiceTest {
     }
 
     @Test
+    //Negative test for customer listing (empty list)
     public void whenListClientIsCalledThenReturnAnEmptyOfClients() {
         when(clientRepository.findAll()).thenReturn(Collections.EMPTY_LIST);
 
@@ -74,6 +78,7 @@ public class ClientServiceTest {
     }
 
     @Test
+    //Positive test for client update
     public void whenValidClientIsGivenThenReturnUpdatedClient() {
         Client client = ClientBuilder.builder().build().client();
 
@@ -91,6 +96,7 @@ public class ClientServiceTest {
     }
 
     @Test
+    //Negative test for client update (non-registered customer)
     public void whenInValidClientGivenThenReturnUpdateClient() throws ClientNotFoundException{
         Client client = ClientBuilder.builder().build().client();
 
@@ -101,6 +107,7 @@ public class ClientServiceTest {
     }
 
     @Test
+    //Positive test for client deletion
     public void whenExclusionValidIdThenAClientShouldBeDeleted(){
         Client client = ClientBuilder.builder().build().client();
 
@@ -111,6 +118,7 @@ public class ClientServiceTest {
     }
 
     @Test
+    //Negative test for customer exclusion (non-registered customer)
     public void whenExclusionInValidIdThenAClientShouldBeDeleted(){
         Client client = ClientBuilder.builder().build().client();
 
@@ -120,20 +128,19 @@ public class ClientServiceTest {
     }
 
     @Test
+    //Positive test for listing a client information according to their cpf
     public void whenValidCpfClientIsGivenThenReturnAClient() {
-        // given
         Client expectedFoundClient = ClientBuilder.builder().build().client();
 
-        // when
         when(clientRepository.findByCpf(expectedFoundClient.getCpf())).thenReturn(expectedFoundClient);
 
-        // then
         Client foundClient = clientService.getClient(expectedFoundClient.getCpf());
 
         assertEquals(foundClient, expectedFoundClient);
     }
 
     @Test
+    //Negative test for listing a client information according to their cpf (there is no client registered with the informed cpf)
     public void whenInValidCpfClientIsGivenThenReturnAClient() throws ClientNotFoundException {
         Client expectedFoundClient = ClientBuilder.builder().build().client();
         when(clientRepository.findByCpf(expectedFoundClient.getCpf()))
@@ -144,6 +151,5 @@ public class ClientServiceTest {
                 () -> clientService.getClient(expectedFoundClient.getCpf()));
 
     }
-    //Wrong test
 }
 

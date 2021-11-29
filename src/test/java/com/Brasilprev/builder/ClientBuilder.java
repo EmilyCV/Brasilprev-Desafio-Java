@@ -6,6 +6,7 @@ import lombok.Builder;
 
 @Builder
 public class ClientBuilder {
+    //Creating a fixed client for testing
     @Builder.Default
     private String cpf = "86952640824";
 

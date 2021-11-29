@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 //@EnableSwagger2
 public class SwaggerConfi {
-
+    //Test class for swagger implementation
     @Bean
     public GroupedOpenApi publicApi() {
         return GroupedOpenApi.builder()

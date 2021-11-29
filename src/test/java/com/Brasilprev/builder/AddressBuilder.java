@@ -5,7 +5,7 @@ import lombok.Builder;
 
 @Builder
 public class AddressBuilder {
-
+    //Creating a fixed address for testing
     @Builder.Default
     private int id = 1;
 
