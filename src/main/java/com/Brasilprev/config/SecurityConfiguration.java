@@ -41,6 +41,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeHttpRequests()
                 .antMatchers("/api/login")
                     .permitAll()
+                .antMatchers("/swagger-ui/**")
+                .permitAll()
                 .antMatchers(HttpMethod.DELETE, "/api/client/{cpf}")
                 .authenticated()
                 .antMatchers("/api/client/**")

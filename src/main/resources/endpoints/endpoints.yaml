@@ -1,0 +1,214 @@
+_type: export
+__export_format: 4
+__export_date: 2021-11-29T02:05:49.491Z
+__export_source: insomnia.desktop.app:v2021.6.0
+resources:
+  - _id: req_6977bcf5d1d748a98513810df8f41194
+    parentId: wrk_1998ba0e3c8d473bb7efd6db9a24e1a2
+    modified: 1638151424527
+    created: 1638117146051
+    url: http://localhost:9092/api/client/48152640824
+    name: updateClient
+    description: ""
+    method: PUT
+    body:
+      mimeType: application/json
+      text: |-
+        {
+            "cpf": "48152640824",
+            "name": "Emily",
+            "email": "emilyMil@gmail.com",
+            "password": "123",
+        		"address":{
+        			"address": "Rua Legal",
+        			"cep": "06090050",
+        			"state": "SP",
+        			"number": "230",
+        			"complement": "Casa"
+        		}
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_e35de2b8756d4053bec7275e748b43c2
+    authentication:
+      type: bearer
+      token: eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJCcmFzaWxwcmV2IEFQSSIsInN1YiI6IjQ4MTUyNjQwODI0IiwiaWF0IjoxNjM4MTUxNDE2LCJleHAiOjE2Mzg1MTE0MTZ9.TMf76ZrHNbd3xbJKIJ09PI96A-eNugDD5mV48Pbtc18
+    metaSortKey: -1638117146051
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: wrk_1998ba0e3c8d473bb7efd6db9a24e1a2
+    parentId: null
+    modified: 1638116893599
+    created: 1638116893599
+    name: BrasilPrev
+    description: ""
+    scope: collection
+    _type: workspace
+  - _id: req_cfb0b74873704effb7b72072ae5ba0f4
+    parentId: wrk_1998ba0e3c8d473bb7efd6db9a24e1a2
+    modified: 1638150270205
+    created: 1638117136594
+    url: http://localhost:9092/api/client/48152640824
+    name: deleteClient
+    description: ""
+    method: DELETE
+    body: {}
+    parameters: []
+    headers: []
+    authentication:
+      type: bearer
+      token: eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJCcmFzaWxwcmV2IEFQSSIsInN1YiI6Ijg2OTUyNjQwOTI0IiwiaWF0IjoxNjM4MTQ5MjA3LCJleHAiOjE2Mzg1MDkyMDd9.YVR2lAs1KLWf1MiaAB3mFo7GMt3qxmghICXHEsw3bYI
+    metaSortKey: -1638117136595
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_f35eb9d6fb6944708bab2bd2da606edb
+    parentId: wrk_1998ba0e3c8d473bb7efd6db9a24e1a2
+    modified: 1638117024330
+    created: 1638117020984
+    url: http://localhost:9092/api/client/
+    name: getAllClient
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1638117020984
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_bf901b55fccd471fa63d519af7029690
+    parentId: wrk_1998ba0e3c8d473bb7efd6db9a24e1a2
+    modified: 1638151088322
+    created: 1638117005812
+    url: http://localhost:9092/api/client/48152640824
+    name: getClient
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1638117005812
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_abfe0296ddd04731bda7daf435055ded
+    parentId: wrk_1998ba0e3c8d473bb7efd6db9a24e1a2
+    modified: 1638151413242
+    created: 1638116990864
+    url: http://localhost:9092/api/client
+    name: createClient
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+            "cpf": "48152640824",
+            "name": "Emily",
+            "email": "emily@gmail.com",
+            "password": "123",
+        		"address":{
+        			"address": "Rua Legal",
+        			"cep": "06090050",
+        			"state": "SP",
+        			"number": "230",
+        			"complement": "Casa"
+        		}
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_cfec11413bc946f29a978bb2fcf27cc0
+    authentication: {}
+    metaSortKey: -1638116990864
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_e858d6b63c974a39a5810d7668fc49a1
+    parentId: wrk_1998ba0e3c8d473bb7efd6db9a24e1a2
+    modified: 1638151416069
+    created: 1638116910423
+    url: http://localhost:9092/api/login
+    name: singnInClient
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"email": "emily@gmail.com",
+        	"password": "123"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_1a1b84f18b2941e8a1ef2a0bbbef52d2
+    authentication: {}
+    metaSortKey: -1638116910423
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: env_b27ba635ff38b457b1c0ba30377f3471b6e841ee
+    parentId: wrk_1998ba0e3c8d473bb7efd6db9a24e1a2
+    modified: 1638116893608
+    created: 1638116893608
+    name: Base Environment
+    data: {}
+    dataPropertyOrder: null
+    color: null
+    isPrivate: false
+    metaSortKey: 1638116893608
+    _type: environment
+  - _id: jar_b27ba635ff38b457b1c0ba30377f3471b6e841ee
+    parentId: wrk_1998ba0e3c8d473bb7efd6db9a24e1a2
+    modified: 1638116893612
+    created: 1638116893612
+    name: Default Jar
+    cookies: []
+    _type: cookie_jar
+  - _id: spc_40505a308fb64608a83e4d83b7af4475
+    parentId: wrk_1998ba0e3c8d473bb7efd6db9a24e1a2
+    modified: 1638116893601
+    created: 1638116893601
+    fileName: BrasilPrev
+    contents: ""
+    contentType: yaml
+    _type: api_spec

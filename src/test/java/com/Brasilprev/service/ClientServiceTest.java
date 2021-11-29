@@ -18,8 +18,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 
 @ExtendWith(MockitoExtension.class)
@@ -48,9 +49,8 @@ public class ClientServiceTest {
     public void whenClientAlreadyExistsGivenThenCreateClient() {
         Client client = ClientBuilder.builder().build().client();
         when(clientRepository.findById(client.getCpf())).thenReturn(Optional.of(client));
-
-
-        assertThrows(ClientAlreadyRegisteredException.class, () -> clientService.addClient(client));
+        Assertions.assertThrows(ClientAlreadyRegisteredException.class,
+                () -> clientService.addClient(client));
     }
 
     @Test
@@ -96,11 +96,28 @@ public class ClientServiceTest {
 
         when(clientRepository.findByCpf(client.getCpf())).thenReturn(null);
 
-        Client clientFound = clientService.updateClient(client, client.getCpf());
-        assertNotEquals(clientFound, client);
+        Assertions.assertThrows(ClientNotFoundException.class,
+                () -> clientService.updateClient(client, client.getCpf()));
     }
 
- 
+    @Test
+    public void whenExclusionValidIdThenAClientShouldBeDeleted(){
+        Client client = ClientBuilder.builder().build().client();
+
+        when(clientRepository.findByCpf(client.getCpf())).thenReturn(client);
+
+        clientService.deleteClient(client.getCpf());
+        verify(clientRepository).delete(client);
+    }
+
+    @Test
+    public void whenExclusionInValidIdThenAClientShouldBeDeleted(){
+        Client client = ClientBuilder.builder().build().client();
+
+        assertThatExceptionOfType(ClientNotFoundException.class)
+                .isThrownBy(() -> clientService.deleteClient(client.getCpf()))
+                .withMessage("Client not found");
+    }
 
     @Test
     public void whenValidCpfClientIsGivenThenReturnAClient() {
@@ -120,26 +137,12 @@ public class ClientServiceTest {
     public void whenInValidCpfClientIsGivenThenReturnAClient() throws ClientNotFoundException {
         Client expectedFoundClient = ClientBuilder.builder().build().client();
         when(clientRepository.findByCpf(expectedFoundClient.getCpf()))
-                .thenReturn(expectedFoundClient);
+                .thenReturn(null);
 
 
         Assertions.assertThrows(ClientNotFoundException.class,
                 () -> clientService.getClient(expectedFoundClient.getCpf()));
 
-//        String invalidCpf = "12345678965";
-//
-//        ClientNotFoundException thrown = assertThrows(
-//                ClientNotFoundException.class,
-//                () -> clientService.getClient(invalidCpf),
-//                "Client not found");
-//
-//        assertTrue(thrown.getMessage().contains("Client not found"));
-
-//        when(clientRepository.findByCpf(anyString())).thenThrow(new ClientNotFoundException());
-//
-//        Client foundClient = clientService.getClient(invalidCpf);
-//
-//        assertNull(foundClient);
     }
     //Wrong test
 }
